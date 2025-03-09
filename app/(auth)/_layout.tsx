@@ -3,9 +3,11 @@ import { Text, View } from 'react-native'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
+import GlobalProvider from '../../context/GlobalProvider'
+
 const AuthLayout = () => {
   return (
-    <>
+    <GlobalProvider>
       <Stack>
         <Stack.Screen 
           name='sign-in'
@@ -24,7 +26,7 @@ const AuthLayout = () => {
 
       <StatusBar backgroundColor="#161662"
       style='light' />
-    </>
+    </GlobalProvider>
   )
 }
 
