@@ -11,21 +11,21 @@ const GlobalProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         getCurrentUser()
-        .then((res) => {
-            if (res) {
-                setIsLoggedIn(true);
-                setUser(res);
-            } else {
-                setIsLoggedIn(false);
-                setUser(null);
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-        .finally(() => {
-            setIsLoading(false);
-        })
+            .then((res) => {
+                if (res) {
+                    setIsLoggedIn(true);
+                    setUser(res);
+                } else {
+                    setIsLoggedIn(false);
+                    setUser(null);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
     }, []); 
 
     return (
@@ -35,8 +35,7 @@ const GlobalProvider = ({ children }) => {
             setIsLoggedIn,
             user,
             setUser,
-            isLoading,
-            setIsLoading
+            isLoading
         }}>
             {children}
         </GlobalContext.Provider>
