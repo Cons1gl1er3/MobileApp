@@ -4,7 +4,7 @@ import { icons } from '../../constants';
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View style={{ width: 200 }} className="items-center justify-center gap-2  ">
+    <View style={{ width: 200 }} className="flex items-center justify-center gap-2 mt-7 pt-7">
       <Image 
         source={icon}
         resizeMode="contain"
