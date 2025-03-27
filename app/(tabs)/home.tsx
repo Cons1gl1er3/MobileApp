@@ -1,11 +1,6 @@
 import { View, Text, FlatList, Image, RefreshControl, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import * as Animatable from 'react-native-animatable';
-
-const TrendingItem = () => {
-  
-}
 
 import { images } from '../../constants'
 import Search from '../search/[query]'
