@@ -1,9 +1,10 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Ionicons as IconType } from '@expo/vector-icons/build/Icons';
 import { PieChart } from 'react-native-chart-kit';
+import { ThemeContext } from './_layout'
 
 interface NavButtonProps {
   icon: keyof typeof IconType.glyphMap;
@@ -67,6 +68,7 @@ const TransactionItem = ({ icon, color, title, amount, isExpense }: TransactionI
 
 const Home2 = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   const changeMonth = (increment: number) => {
     const newDate = new Date(currentDate);
@@ -99,18 +101,18 @@ const Home2 = () => {
   }));
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className={`flex-1 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <ScrollView className="flex-1">
         {/* Header */}
-        <View className="flex-row justify-between items-center px-4 pt-4">
+        <View className="flex-row justify-between items-center px-4 pt-4 my-5">
           <Text className="text-2xl font-bold">Home</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={toggleDarkMode}>
             <Ionicons name="settings-outline" size={24} color="#000" />
           </TouchableOpacity>
         </View>
 
         {/* Month Selector */}
-        <View className="flex-row justify-between items-center px-4 mt-6">
+        <View className="flex-row justify-between items-center px-4 my-6">
           <View className="flex-row items-center">
             <Ionicons name="calendar-outline" size={20} color="#000" />
             <Text className="text-lg ml-2">{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}</Text>
