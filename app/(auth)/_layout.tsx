@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { Redirect, Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { useGlobalContext } from "../../context/GlobalProvider"
+import React from "react"
 
 const AuthLayout = () => {
   const { loading, isLoggedIn } = useGlobalContext();
