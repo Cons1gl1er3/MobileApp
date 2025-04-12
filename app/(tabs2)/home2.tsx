@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Ionicons as IconType } from '@expo/vector-icons/build/Icons';
 import { PieChart } from 'react-native-chart-kit';
 import { ThemeContext } from './_layout'
+import PieChartComponent from '../../components/PieChart';
 
 interface NavButtonProps {
   icon: keyof typeof IconType.glyphMap;
@@ -185,21 +186,14 @@ const Home2 = () => {
           <Text className="text-xl font-bold">Categories</Text>
           <View className="flex-row mt-4 h-48">
             <View className="w-1/2 items-center justify-center">
-              <PieChart
+              <PieChartComponent
                 data={chartData}
                 width={150}
                 height={150}
-                chartConfig={{
-                  backgroundColor: 'transparent',
-                  decimalPlaces: 0,
-                  color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                }}
                 accessor="population"
-                backgroundColor="transparent"
-                paddingLeft="0"
                 absolute
-                hasLegend={false}
-                center={[30, 0]} // offset to center the chart properly
+                center={[30, 0]}
+                showLegend={false}
               />
               <Text className="mt-1 font-bold pr-5">€1980.0</Text>
             </View>
