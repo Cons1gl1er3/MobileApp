@@ -1,11 +1,15 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Ionicons as IconType } from '@expo/vector-icons/build/Icons';
 import { PieChart } from 'react-native-chart-kit';
 import { ThemeContext } from './_layout'
 import PieChartComponent from '../../components/PieChart';
+import { logout } from '../../lib/appwrite';
+import { useGlobalContext } from '../../context/GlobalProvider';
+import CustomButton from '../../components/CustomButton';
+import { Link, useRouter } from 'expo-router';
 
 interface NavButtonProps {
   icon: keyof typeof IconType.glyphMap;
@@ -69,7 +73,8 @@ const TransactionItem = ({ icon, color, title, amount, isExpense }: TransactionI
 
 const Home2 = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  const { darkMode, toggleDarkMode, logoutUser } = useGlobalContext();
+  const router = useRouter();
 
   const changeMonth = (increment: number) => {
     const newDate = new Date(currentDate);
@@ -101,12 +106,23 @@ const Home2 = () => {
     legendFontSize: 12,
   }));
 
+  const handleLogout = async () => {
+    try {
+      await logout(); 
+      logoutUser();   
+  
+      router.replace('/sign-in');
+    } catch (err) {
+      console.warn('Logout failed:', err);
+    }
+  };
+
   return (
     <SafeAreaView className={`flex-1 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <ScrollView className="flex-1">
         {/* Header */}
         <View className="flex-row justify-between items-center px-4 pt-4 my-5">
-          <Text className="text-2xl font-bold">Home</Text>
+          <Text className="text-2xl font-bold ">Home</Text>
           <TouchableOpacity onPress={toggleDarkMode}>
             <Ionicons name="settings-outline" size={24} color="#000" />
           </TouchableOpacity>
@@ -249,7 +265,29 @@ const Home2 = () => {
             {/* Add more transactions as needed */}
           </View>
         </View>
+
+        <View>
+          {/* Other components */}
+          <CustomButton 
+            title="Logout" 
+            handlePress={handleLogout} 
+            containerStyles="mt-4"
+            textStyles=""
+            isLoading={false}
+          />
+        </View>
+        <Link href="/scan" asChild>
+          <TouchableOpacity className="bg-green-600 px-4 py-2 rounded-xl shadow mt-4">
+            <Text className="text-white text-base font-semibold text-center">📸 Scan Receipt</Text>
+          </TouchableOpacity>
+        </Link>
       </ScrollView>
+      <TouchableOpacity
+          onPress={() => router.push('/add-transaction')} // Make sure this screen exists
+          className="absolute bottom-6 right-6 bg-blue-600 p-4 rounded-full shadow-xl"
+        >
+          <Ionicons name="add" size={28} color="white" />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

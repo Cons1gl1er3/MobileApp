@@ -1,0 +1,30 @@
+MobileApp/
+├── app/
+│   ├── (tabs2)/
+│   │   ├── home2.tsx
+│   │   └── ... (other tab files)
+│   ├── components/
+│   │   ├── CustomButton.tsx
+│   │   ├── PieChart.tsx
+│   │   └── ... (other shared components)
+│   ├── context/
+│   │   ├── GlobalProvider.tsx
+│   │   └── ... (other context files)
+│   ├── lib/
+│   │   ├── appwrite.ts
+│   │   └── ... (other library files)
+│   ├── assets/
+│   │   ├── images/
+│   │   ├── icons/
+│   │   └── ... (other asset files)
+│   ├── navigation/
+│   │   ├── AppNavigator.tsx
+│   │   └── ... (other navigation files)
+│   ├── styles/
+│   │   ├── globalStyles.ts
+│   │   └── ... (other style files)
+│   └── _layout.tsx
+├── package.json
+├── tsconfig.json
+├── .gitignore
+└── README.md

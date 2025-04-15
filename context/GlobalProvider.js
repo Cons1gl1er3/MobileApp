@@ -9,6 +9,18 @@ const GlobalProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const logoutUser = () => {
+        setIsLoggedIn(false);
+        setUser(null);
+    };
+
+    const [darkMode, setDarkMode] = useState(false); // Default to light mode
+
+    const toggleDarkMode = () => {
+        setDarkMode((prevMode) => !prevMode);
+    };
+
     useEffect(() => {
         getCurrentUser()
             .then((res) => {
@@ -35,7 +47,10 @@ const GlobalProvider = ({ children }) => {
             setIsLoggedIn,
             user,
             setUser,
-            isLoading
+            isLoading,
+            logoutUser,
+            darkMode,
+            toggleDarkMode,
         }}>
             {children}
         </GlobalContext.Provider>

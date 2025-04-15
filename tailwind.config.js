@@ -19,6 +19,20 @@ module.exports = {
         gray: {
           100: "#CDCDE0",
         },
+        light: {
+          primary: '#6366F1',
+          secondary: '#9333EA',
+          bg: "#ffffff",
+          text: "#1F2937",
+          card: "#F3F4F6",
+        },
+        dark: {
+          primary: '#818CF8',
+          secondary: '#C084FC',
+          bg: "#111827",
+          text: "#F9FAFB",
+          card: "#1F2937",
+        },
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],
